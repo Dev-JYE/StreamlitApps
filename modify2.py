@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 29 15:51:31 2023
-
-@author: PC-2308003!
-"""
-
 import streamlit as st
 
 def remove_text(target_text, text_to_remove):
@@ -29,8 +22,19 @@ def main():
             new_text = remove_text(target_text, text_to_remove)
             st.subheader("Modified Text:")
             st.text_area("Result:", value=new_text)  # 결과가 입력창에 나타남
+
+            # Copy 'new_text' to the clipboard
+            st.experimental_set_query_params(new_text=new_text)  # Set new_text as query parameter
+            st.experimental_rerun()  # Rerun the app with the query parameter
+
+            st.success("Modified text copied to clipboard!")
         else:
             st.warning("Please enter both the target text and text to remove.")
+
+    # Retrieve the new_text query parameter and copy it to clipboard
+    new_text_query_param = st.experimental_get_query_params().get("new_text", None)
+    if new_text_query_param:
+        st.experimental_rerun()  # Rerun the app without displaying any changes
 
 if __name__ == "__main__":
     main()
