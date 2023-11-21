@@ -1,4 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 29 15:51:31 2023
+
+@author: PC-2308003!
+"""
+
 import streamlit as st
+import pyperclip 
 
 def remove_text(target_text, text_to_remove):
     lines = target_text.split('\n')
@@ -14,27 +22,21 @@ def remove_text(target_text, text_to_remove):
 def main():
     st.title("Text Editor")
 
-    target_text = st.text_area("텍스트를 입력하세요:", "")
-    text_to_remove = st.text_input("제거할 텍스트를 입력하세요:", "")
+    target_text = st.text_area("Enter your text:", "")
+    text_to_remove = st.text_input("Enter text to remove:", "")
 
-    if st.button("제거"):
+    if st.button("Remove"):
         if target_text and text_to_remove:
             new_text = remove_text(target_text, text_to_remove)
-            st.subheader("수정된 텍스트:")
-            st.text_area("결과:", value=new_text)  # 결과가 입력창에 나타남
-
-            # 클립보드로 'new_text' 복사
-            st.experimental_set_query_params(new_text=new_text)  # new_text를 쿼리 매개변수로 설정
-            st.experimental_rerun()  # 쿼리 매개변수를 사용하여 앱 재실행
+            st.subheader("Modified Text:")
+            st.text_area("Result:", value=new_text)  # 결과가 입력창에 나타남
+            
+             # 클립보드에 'new_text' 복사
+            pyperclip.copy(new_text)  # 수정된 텍스트를 클립보드에 복사
 
             st.success("수정된 텍스트가 클립보드에 복사되었습니다!")
         else:
-            st.warning("대상 텍스트와 제거할 텍스트를 모두 입력하세요.")
-
-    # 'new_text' 쿼리 매개변수를 가져와서 클립보드로 복사
-    new_text_query_param = st.experimental_get_query_params().get("new_text", None)
-    if new_text_query_param:
-        st.experimental_rerun()  # 변경사항을 표시하지 않고 앱을 재실행
+            st.warning("Please enter both the target text and text to remove.")
 
 if __name__ == "__main__":
     main()
