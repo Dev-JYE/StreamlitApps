@@ -31,10 +31,10 @@ def main():
             st.subheader("Modified Text:")
             st.text_area("Result:", value=new_text)  # 결과가 입력창에 나타남
             
-             # 클립보드에 'new_text' 복사
-            pyperclip.copy(new_text)  # 수정된 텍스트를 클립보드에 복사
+            #  # 클립보드에 'new_text' 복사
+            # pyperclip.copy(new_text)  # 수정된 텍스트를 클립보드에 복사
 
-            st.success("수정된 텍스트가 클립보드에 복사되었습니다!")
+            # st.success("수정된 텍스트가 클립보드에 복사되었습니다!")
         else:
             st.warning("Please enter both the target text and text to remove.")
 
