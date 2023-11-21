@@ -60,8 +60,8 @@ def daily_work(user):
   df_y['작업수량'] = df_y['재할당']+df_y['검수 대기']+df_y['검수 완료']
   df_t['작업수량'] = df_t['재할당']+df_t['검수 대기']+df_t['검수 완료']
 
-  df_y = df_y[['Domain','ID','작업수량','계']]
-  df_t = df_t[['Domain','ID','작업수량','계']]
+  df_y = df_y[['Domain','ID','작업수량']]
+  df_t = df_t[['Domain','ID','작업수량']]
 
 
   tmp = pd.merge(df_t, df_y, how = 'left', on = ['Domain','ID']).fillna(0)
@@ -82,7 +82,7 @@ def main():
     st.title('일일 작업량 게시')
 
     # 사용자 입력 받기
-    id_input = st.text_input('사용자 ID를 입력하세요 (ex) FRA16000:')
+    id_input = st.text_input('사용자 ID를 입력하세요 (ex) FRA16000')
     user_workload = daily_work(id_input)
    
     if id_input:
