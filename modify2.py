@@ -6,7 +6,7 @@ Created on Tue Aug 29 15:51:31 2023
 """
 
 import streamlit as st
-import pyperclip 
+
 
 def remove_text(target_text, text_to_remove):
     lines = target_text.split('\n')
