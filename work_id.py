@@ -82,7 +82,7 @@ def main():
     st.title('일일 작업량 게시')
 
     # 사용자 입력 받기
-    id_input = 'FRA'+ st.text_input('사용자 ID를 입력하세요 FRA12345에서 12345만 입력 ')
+    id_input = st.text_input('사용자 ID를 입력하세요. 소문자 가능').upper()
     st.write(f"Whoops — something went wrong! An error has been logged.는 무시하셔도 됩니다.")
     user_workload = daily_work(id_input)
    
