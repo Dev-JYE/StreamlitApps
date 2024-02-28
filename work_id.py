@@ -84,6 +84,7 @@ def main():
     # 사용자 입력 받기
     id_input = st.text_input('사용자 ID를 입력하세요. 소문자 가능').upper()
     st.write(f"Whoops — something went wrong! An error has been logged.는 무시하셔도 됩니다.")
+    st.write(f"작업량 계산 시점: 평일 오전 10시 30분경, 해당 시간 이전에 작업량을 확인하시는 경우에는 전날 10시 기준 작업량이 표시됩니다.")
     user_workload = daily_work(id_input)
    
     if id_input:
